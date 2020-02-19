@@ -2,7 +2,7 @@
 public class Conta {
 
 	private String numero;
-	private String saldoDaConta;
+	private double saldoDaConta;
 	
 	public String getNumero() {
 		return numero;
@@ -10,10 +10,10 @@ public class Conta {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	public String getSaldoDaConta() {
+	public double getSaldoDaConta() {
 		return saldoDaConta;
 	}
-	public void setSaldoDaConta(String saldoDaConta) {
+	public void setSaldoDaConta(double saldoDaConta) {
 		this.saldoDaConta = saldoDaConta;
 	}
 	
