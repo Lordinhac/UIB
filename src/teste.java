@@ -16,9 +16,14 @@ public class Teste {
 		
 		ct1.setNumero("7777777-7");
 		ct1.setSaldoDaConta(0.00);
+		ct1.cliente = cl1;
+		
+		cl1.setCpf("987");
 		
 		System.out.println(ct1);
 		System.out.println(ct1.getNumero() + " - " + ct1.getSaldoDaConta());
+		System.out.println(ct1.cliente.getNome());
+		System.out.println(ct1.cliente.getCpf());
 		
 		
 	}

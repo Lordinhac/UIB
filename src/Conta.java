@@ -1,8 +1,10 @@
 
 public class Conta {
 
+	public Cliente cliente;
 	private String numero;
 	private double saldoDaConta;
+	
 	
 	public String getNumero() {
 		return numero;
@@ -16,5 +18,7 @@ public class Conta {
 	public void setSaldoDaConta(double saldoDaConta) {
 		this.saldoDaConta = saldoDaConta;
 	}
+	
+	
 	
 }
