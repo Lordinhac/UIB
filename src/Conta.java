@@ -1,7 +1,14 @@
 
 public class Conta {
 
-	public Cliente cliente;
+	private Cliente cliente;
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	private String numero;
 	private double saldoDaConta;
 	
@@ -19,6 +26,13 @@ public class Conta {
 		this.saldoDaConta = saldoDaConta;
 	}
 	
+	public void creditar(double valor) {
+		this.saldoDaConta = (saldoDaConta + valor);
+	}
 	
+	public void debitar(double valor) {
+		this.saldoDaConta = (saldoDaConta + valor);
+	}
+	public void transferir ()
 	
 }
