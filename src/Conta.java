@@ -2,17 +2,15 @@
 public class Conta {
 
 	private Cliente cliente;
+	private String numero;
+	private double saldoDaConta;
 	
 	public Cliente getCliente() {
 		return cliente;
 	}
 	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+		this.cliente = cliente; //o this e- um resolvedor de conflitos, ele vai se referir a um atributo que tem o msm nome dele
 	}
-	private String numero;
-	private double saldoDaConta;
-	
-	
 	public String getNumero() {
 		return numero;
 	}
@@ -27,12 +25,22 @@ public class Conta {
 	}
 	
 	public void creditar(double valor) {
-		this.saldoDaConta = (saldoDaConta + valor);
+		this.saldoDaConta = (this.saldoDaConta + valor);
 	}
 	
 	public void debitar(double valor) {
-		this.saldoDaConta = (saldoDaConta + valor);
+		this.saldoDaConta = (this.saldoDaConta - valor);
 	}
-	public void transferir ()
+	public void transferir (Conta ct2, double valor) {
+		debitar(valor);
+		ct2.creditar(valor);
+		
+	}
+	
+	//public String toString() {
+	//	return "Conta [cliente=" + cliente + ", numero=" + numero + ", saldoDaConta=" + saldoDaConta + "]";
+	//}
+	
+	
 	
 }
