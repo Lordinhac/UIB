@@ -1,9 +1,14 @@
+import java.util.UUID;
 
 public class Conta {
 
 	private Cliente cliente;
 	private String numero;
 	private double saldoDaConta;
+	
+	public Conta() {
+		saldoDaConta = 500;
+	}
 	
 	public Cliente getCliente() {
 		return cliente;
@@ -33,13 +38,18 @@ public class Conta {
 	}
 	public void transferir (Conta ct2, double valor) {
 		debitar(valor);
-		ct2.creditar(valor);
-		
+		ct2.creditar(valor);	
 	}
 	
-	//public String toString() {
-	//	return "Conta [cliente=" + cliente + ", numero=" + numero + ", saldoDaConta=" + saldoDaConta + "]";
-	//}
+	public static String gerarNumero() {
+		return UUID.randomUUID().toString();
+	}
+	
+	public String toString() {
+		return "Conta [cliente=" + cliente.getNome() 
+		+ ", numero=" + numero  
+		+ ", saldoDaConta=" + saldoDaConta;
+	}
 	
 	
 	
