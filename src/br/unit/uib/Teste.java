@@ -1,3 +1,6 @@
+package br.unit.uib;
+import br.unit.uib.entidades.Cliente;
+import br.unit.uib.entidades.Conta;
 
 public class Teste {
 

@@ -1,4 +1,12 @@
+package br.unit.uib;
+
+import static br.unit.uib.Constantes.*;
+
 import java.util.Scanner;
+
+import br.unit.uib.entidades.Cliente;
+import br.unit.uib.entidades.Conta;
+import br.unit.uib.util.SenhaUtil;
 
 public class UIBMain {
 
@@ -39,8 +47,8 @@ public class UIBMain {
 		System.out.println(ct2.getNumero() + " - " + ct2.getSaldoDaConta());
 		*/
 		
-		final int TOTAL_CLIENTES = 2;
-		final int TOTAL_CONTAS = 2;
+		
+		
 		
 		Scanner leteclado = new Scanner(System.in);
 		
@@ -58,31 +66,31 @@ public class UIBMain {
 			opcao = leteclado.nextInt();
 			
 			switch (opcao) {
-			case 1: {
+			case ABRIR_CONTA: {
 				Conta conta = montaConta();
 				contas[indice] = conta;
 				System.out.println("O numero da sua conta é: " + conta.getNumero());
 				indice++;
 				break;
-			}case 2: {
+			}case CONSULTAR_SALDO: {
 				Conta conta = buscarConta(contas);
 				if(conta != null) {
 					System.out.println(conta.getSaldoDaConta());
 				}
 				break;
-			}case 3: {
+			}case CREDITAR: {
 				
 				
 				break;
-			}case 4: {
+			}case DEBITAR: {
 				
 				
 				break;
-			}case 5: {
+			}case TRANSFERIR: {
 				
 				
 				break;
-			}case 6: {
+			}case SAIR: {
 				System.out.println("Obrigado pela preferencia!");
 				System.out.println("--------------------------");
 				break;
@@ -92,7 +100,7 @@ public class UIBMain {
 				break;
 			}
 			
-		}while(opcao != 6);
+		}while(opcao != SAIR);
 		
 		
 		
