@@ -8,49 +8,14 @@ import br.unit.uib.entidades.Cliente;
 import br.unit.uib.entidades.Conta;
 import br.unit.uib.util.SenhaUtil;
 
+
 public class UIBMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		
-		/*Cliente cl1 = new Cliente();
-		Cliente cl2 = new Cliente();
-		
-		cl1.setCpf("000-000-000-00");
-		cl1.setNome("Vitor");
-		
-		cl2.setCpf("111-111-111-11");
-		cl2.setNome("Paula");
-		
-		Conta ct1 = new Conta();
-		Conta ct2 = new Conta();
-		
-		ct1.setNumero("7777777-7");
-		ct1.setSaldoDaConta(300.00);
-		ct2.setNumero("3333333-3");
-		ct2.setSaldoDaConta(200.00);
-		
-		ct1.setCliente(cl1);
-		ct2.setCliente(cl2);
-		
-		ct1.debitar(100);
-		ct1.creditar(20);
-		
-		ct2.transferir(ct1, 50.00);
-		
-		System.out.println(cl1);
-		System.out.println(ct1.getCliente());
-		System.out.println(ct1.getNumero() + " - " + ct1.getSaldoDaConta());
-		System.out.println(cl2);
-		System.out.println(ct2.getCliente());
-		System.out.println(ct2.getNumero() + " - " + ct2.getSaldoDaConta());
-		*/
-		
-		
-		
-		
 		Scanner leteclado = new Scanner(System.in);
+		
 		
 		Conta[] contas = new Conta[TOTAL_CONTAS];
 		
@@ -79,15 +44,36 @@ public class UIBMain {
 				}
 				break;
 			}case CREDITAR: {
+				System.out.println("Digite o valor à creditar:");
+				double valor = leteclado.nextDouble();
 				
+				Conta conta = buscarConta(contas);
+				if(conta != null) {
+					conta.creditar(valor);
+				}
 				
 				break;
 			}case DEBITAR: {
+				System.out.println("Digite o valor à debitar:");
+				double valor = leteclado.nextDouble();
 				
+				Conta conta = buscarConta(contas);
+				if(conta != null) {
+					conta.debitar(valor);
+				}
 				
 				break;
 			}case TRANSFERIR: {
+				System.out.println("Digite o valor à transferir:");
+				double valor = leteclado.nextDouble();
 				
+				Conta conta = buscarConta(contas);
+				if(conta != null) {
+					Conta contaDestino = buscarContaDestino(contas);
+					if(contaDestino != null) {
+						conta.transferir(contaDestino, valor);
+					}
+				}
 				
 				break;
 			}case SAIR: {
@@ -102,25 +88,6 @@ public class UIBMain {
 			
 		}while(opcao != SAIR);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*
-		contas[0].debitar(100);
-		contas[0].creditar(20);
-		contas[1].transferir(contas[0], 50);
-		
-		
-		for(int i = 0; i <TOTAL_CONTAS; i++) {
-			System.out.println(contas[i]);
-		}
-		*/
 	}
 	
 	private static void imprimeMenu() {
@@ -184,8 +151,29 @@ public class UIBMain {
 		}
 		System.out.println("Conta "+ numero + "não encontrada!");
 		return null;
+		
+		
 	}
 	
+	private static Conta buscarContaDestino(Conta[] contas) {
+		Scanner leteclado = new Scanner(System.in);
+		
+		System.out.println("Digite o numero da conta de destino:");
+		String numero = leteclado.next();
+		
+		
+		for (Conta conta : contas) {
+			if(conta != null) {
+				if(conta.getNumero().equals(numero)) {
+					return conta;
+				}
+			}
+		}
+		System.out.println("Conta "+ numero + "não encontrada!");
+		return null;
+		
+		
+	}
 }
 
 
