@@ -46,31 +46,64 @@ public class UIBMain {
 		
 		Conta[] contas = new Conta[TOTAL_CONTAS];
 		
+		int indice = 0;
+		int opcao = -1;
+		
 		System.out.println("Bem vindo ao UIB!");
-		System.out.println("-------------------");
+		System.out.println("-----------------");
 		
-		for(int i = 0; i < TOTAL_CLIENTES; i++) {
-			Cliente cliente = new Cliente();
-			Conta conta = new Conta();
+		do {
+			imprimeMenu();
 			
-			System.out.println("Digite o nome do Cliente");
-			cliente.setNome(leteclado.next());
+			opcao = leteclado.nextInt();
 			
-			System.out.println("Digite o CPF do Cliente");
-			cliente.setCpf(leteclado.next());
+			switch (opcao) {
+			case 1: {
+				Conta conta = montaConta();
+				contas[indice] = conta;
+				System.out.println("O numero da sua conta é: " + conta.getNumero());
+				indice++;
+				break;
+			}case 2: {
+				Conta conta = buscarConta(contas);
+				if(conta != null) {
+					System.out.println(conta.getSaldoDaConta());
+				}
+				break;
+			}case 3: {
+				
+				
+				break;
+			}case 4: {
+				
+				
+				break;
+			}case 5: {
+				
+				
+				break;
+			}case 6: {
+				System.out.println("Obrigado pela preferencia!");
+				System.out.println("--------------------------");
+				break;
+			}
+			default:
+				System.out.println("comando invalido! Selecione novamente");
+				break;
+			}
 			
-			System.out.println("Digite o valor do deposito inicial");
-			conta.creditar(leteclado.nextDouble());
-			
-			
-			conta.setNumero(Conta.gerarNumero());
-			
-			conta.setCliente(cliente);
-			
-			contas[i] = conta;
-			
-		}
+		}while(opcao != 6);
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
 		contas[0].debitar(100);
 		contas[0].creditar(20);
 		contas[1].transferir(contas[0], 50);
@@ -79,7 +112,72 @@ public class UIBMain {
 		for(int i = 0; i <TOTAL_CONTAS; i++) {
 			System.out.println(contas[i]);
 		}
-		
+		*/
 	}
+	
+	private static void imprimeMenu() {
+		System.out.println("[1] - Abrir Conta\r\n" + 
+				"[2] - consulta saldo\r\n" + 
+				"[3] - creditar em conta\r\n" + 
+				"[4] - debitar em conta\r\n" + 
+				"[5] - Transferir\r\n" + 
+				"[6] - sair");
+	}
+	
+	private static Cliente montaCliente() {
+		Scanner leteclado = new Scanner(System.in);
+		
+		System.out.println("Digite o nome do Cliente:");
+		String nome = leteclado.next();
+		
+		System.out.println("Digite o CPF do Cliente:");
+		String cpf = leteclado.next();
+		
+		Cliente cliente = new Cliente(nome, cpf);
+		
+		return cliente;
+	}
+	
+	private static Conta montaConta() {
+		Scanner leteclado = new Scanner(System.in);
+		Cliente cliente = montaCliente();
+		
+		System.out.println("Digite o sua senha:");
+		String senha = leteclado.next();
+		String senhaHash = SenhaUtil.gerahash(senha);
+		
+		System.out.println("Digite o valor do deposito inicial:");
+		double saldoInicial = leteclado.nextDouble();
+		
+		String numero = Conta.gerarNumero();
 
+		Conta conta = new Conta(numero, senhaHash, saldoInicial, cliente);
+
+		return conta;
+	}
+	
+	private static Conta buscarConta(Conta[] contas) {
+		Scanner leteclado = new Scanner(System.in);
+		
+		System.out.println("Digite o numero da conta:");
+		String numero = leteclado.next();
+		
+		System.out.println("Digite o sua senha:");
+		String senha = leteclado.next();
+		String senhaHash = SenhaUtil.gerahash(senha);
+		
+		for (Conta conta : contas) {
+			if(conta != null) {
+				if(conta.getNumero().equals(numero)//
+						&& conta.getSenha().equals(senhaHash)) {
+					return conta;
+				}
+			}
+		}
+		System.out.println("Conta "+ numero + "não encontrada!");
+		return null;
+	}
+	
 }
+
+

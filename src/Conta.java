@@ -1,15 +1,26 @@
 import java.util.UUID;
 
 public class Conta {
-
+	//atributos
 	private Cliente cliente;
 	private String numero;
 	private double saldoDaConta;
+	private String senha;
 	
+	
+	//construtores
 	public Conta() {
-		saldoDaConta = 500;
 	}
 	
+	public Conta(String numero, String senha, Double saldoDaConta, Cliente cliente) {
+		this.saldoDaConta = saldoDaConta;
+		this.numero = numero;
+		this.senha = senha;
+		this.cliente = cliente;
+	}
+	
+	
+	//metodos
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -51,6 +62,12 @@ public class Conta {
 		+ ", saldoDaConta=" + saldoDaConta;
 	}
 	
-	
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 }
